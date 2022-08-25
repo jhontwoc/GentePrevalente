@@ -1,5 +1,58 @@
 <template>
-  <nav>
+  <nav class="w-full h-min bg-zinc-800 text-white flex gap-12 justify-between px-4">
+    <div class="w-max p-2 flex gap-2 items-center">
+      <img src="../assets/images/logo/Logo1.png" class="w-10 h-10" />
+      <span class="text-lg font-bold whitespace-nowrap">Gente prevalente</span>
+    </div>
+    <div v-if="width > 768" class="flex w-full justify-between items-center">
+      <content-nav-bar />
+    </div>
+    <div v-else class="relative flex flex-col item-center">
+      <button @click="isShowingContent = !isShowingContent" class="p-4 bg-transparent">
+        <img src="../assets/images/icons/Options.png" />
+      </button>
+      <transition name="fade">
+        <div v-if="isShowingContent"
+          class="flex flex-col-reverse gap-4 absolute top-full right-0 h-64 bg-zinc-700 overflow-y-auto p-2 rounded z-50">
+          <content-nav-bar />
+        </div>
+      </transition>
+    </div>
+  </nav>
+</template>
+
+<script>
+import { ref, computed, onMounted } from "vue";
+import ContentNavBar from "./ContentNavBar.vue";
+export default {
+  components: {
+    ContentNavBar,
+  },
+  setup() {
+    /**
+     * Booleans
+     */
+    let isShowingContent = ref(false);
+
+    /**
+     * Numbers
+     */
+    let windowWidth = ref(window.innerWidth);
+    const width = computed(() => windowWidth.value);
+
+    /**
+     * Functions
+     */
+    onMounted(() => {
+      window.addEventListener("resize", onWidthChange);
+    });
+    const onWidthChange = () => (windowWidth.value = window.innerWidth);
+
+    return { isShowingContent, width };
+  },
+};
+/**
+ *  <nav>
     <!-- desktop Menu -->
     <div class="bg-neutral-800">
       <div class="max-w-1xl mx-auto">
@@ -78,18 +131,17 @@
       </a>
     </div>
   </nav>
-</template>
-
-<script>
-import { ref } from 'vue';
-export default {
-  setup() {
-    let showMenu = ref(false);
-    const toggleNav = () => (showMenu.value = !showMenu.value);
-    return { showMenu, toggleNav };
-  },
-};
+ */
 </script>
 
-<style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

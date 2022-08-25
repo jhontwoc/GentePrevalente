@@ -1,44 +1,46 @@
 <template>
 	<div>
-		<div class="flex flex-col min-h-screen items-center justify-start bg-gray-200">
-			<div class="mt-auto bg-center mx-auto w-full max-w-lg bg-white shadow-lg rounded-lg">
-				<div class="">
-					<img class="justify-center"
-						src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Apple-logo.png/640px-Apple-logo.png" />
-					<div class="text-center relative z-0 border-1">
-						<button type="button"
-							class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-3 py-1 text-center inline-flex items-center mr-2 mb-2">
-							<img class="" src="../assets/images/icons/Approve.png">
-							<div class='ml-3 text-sm font-bold pt-0.5'>
-								Aprobar Empresa
-							</div>
-						</button>
-					</div>
-					<div class="text-center relative z-0 border-1">
-						<button type="button"
-							class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-3 py-1 text-center inline-flex items-center mr-2 mb-2">
-							<img class="" src="../assets/images/icons/Decline.png">
-							<div class='ml-3 text-sm font-bold pt-0.5'>
-								Rechazar Empresa
-							</div>
-						</button>
+		<div class="w-full h-full flex flex-col min-h-screen items-center justify-start bg-gray-200">
+			<div class="mt-auto bg-center mx-auto w-full max-w-lg bg-white shadow-lg rounded-lg p-20">
+				<div class="flex justify-between">
+					<img class="text-center"
+						src="https://media-exp1.licdn.com/dms/image/C4E0BAQFr1Mn-qykpGw/company-logo_200_200/0/1569503596387?e=2159024400&v=beta&t=9kG-dpqUDzbo1mFBr3uNZ3QLwJgi3zXRSqXwy_LTYK8" />
+					<div class="flex-col">
+						<div class="text-center relative z-0 border-1">
+							<button @click="approveState()" type="button"
+								class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-auto py-auto text-center inline-flex items-center mb-2">
+								<img class="" src="../assets/images/icons/Approve.png">
+								<div class='ml-3 text-sm font-bold pt-0.5'>
+									Aprobar Empresa
+								</div>
+							</button>
+						</div>
+						<div class="text-center relative z-0 border-1">
+							<button @click="declineState()" type="button"
+								class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-auto py-auto text-center inline-flex items-center mb-2">
+								<img class="" src="../assets/images/icons/Decline.png">
+								<div class='ml-3 text-sm font-bold pt-0.5'>
+									Rechazar Empresa
+								</div>
+							</button>
+						</div>
 					</div>
 				</div>
-				<form action="https://api.web3forms.com/submit" class="mt-10">
+				<form class="mt-10">
 					<input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
 					<div class="grid gap-6 sm:grid-cols-2">
-						<div class="relative z-0">
-							<input type="text" name="Nombre"
-								class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+						<div class="relative z-0 pb-10">
+							<input v-model="Company.Nombre" type="text" name="Nombre"
+								class="font-bold peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
 								placeholder=" " />
 							<label
 								class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
 								Nombre de la empresa
 							</label>
 						</div>
-						<div class="relative z-0">
-							<input type="text" name="Razón"
-								class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+						<div class="relative z-0 pb-10">
+							<input v-model="Company.Razón" type="text" name="Razón"
+								class="font-bold peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
 								placeholder=" " />
 							<label
 								class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
@@ -47,18 +49,18 @@
 						</div>
 					</div>
 					<div class="grid gap-6 sm:grid-cols-2">
-						<div class="relative z-0">
-							<input type="text" name="Tipo"
-								class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+						<div class="relative z-0 pb-10">
+							<input v-model="Company.Nit" type="text" name="Tipo"
+								class="font-bold peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
 								placeholder=" " />
 							<label
 								class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
 								Tipo de identificación
 							</label>
 						</div>
-						<div class="relative z-0">
-							<input type="text" name="Identificación"
-								class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+						<div class="relative z-0 pb-10">
+							<input v-model="Company.Identificación" type="text" name="Identificación"
+								class="font-bold peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
 								placeholder=" " />
 							<label
 								class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
@@ -67,17 +69,17 @@
 						</div>
 					</div>
 					<div class="grid gap-6 sm:grid-cols-2">
-						<div class="relative z-0">
-							<input type="text" name="NumEmpleados"
-								class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+						<div class="relative z-0 pb-10">
+							<input v-model="Company.NumEmpleados" type="text" name="NumEmpleados"
+								class="font-bold peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
 								placeholder=" " />
 							<label
 								class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
 								# de empleados
 							</label>
 						</div>
-						<div class="text-center relative z-0 border-1">
-							<button type="button"
+						<div class="text-center relative z-0 border-1 pr-10">
+							<button type="button" @click="modal = true"
 								class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-3 py-1.5 text-center inline-flex items-center mr-2 mb-2">
 								<img class="" src="../assets/images/icons/Clip.png">
 								<div class='ml-3 text-sm font-bold pt-0.5'>
@@ -90,37 +92,66 @@
 			</div>
 			<div class="mb-auto flex justify-center items-center mt-6">
 				<div class="inline-flex items-center text-gray-700 text-xs text-center">
-					<img src="../assets/images/icons/Back.png">
-					<p class="pr-1 pl-1 text-gray-500">Empresa 1 de 2 pendiente por aprobación</p>
-					<img src="../assets/images/icons/Next.png">
+					<img @click="decrease()" src="../assets/images/icons/Back.png">
+					<p class="pr-1 pl-1 text-gray-500">Empresa {{currentPage}} de 5 pendiente por aprobación</p>
+					<img @click="increase()" src="../assets/images/icons/Next.png">
 				</div>
 			</div>
 		</div>
+		<modal :modal = "modal" />
 	</div>
 </template>
 
 <script>
 import AddCompanyApi from '@/Api/AddCompanys'
+import docsModal from '@/components/modals/docsModal.vue'
 
 export default {
+	components: {
+    docsModal,
+  },
 	data() {
 		return {
-			Companys: [],
+			modal: false,
+			currentPage: 1,
+			Company: [],
 		}
 	},
 	mounted() {
 		this.loadEntries()
 	},
 	methods: {
-		async loadEntries() {
-			const { data } = await AddCompanyApi.get('/Empresas.json')
-			for (let Identificación of Object.keys(data)) {
-				this.Companys.push({
-					Identificación,
-					...data[Identificación]
-				})
+		increase() {
+			if (this.currentPage < 5) {
+				this.Company = []
+				this.currentPage += 1
+				this.loadEntries()
 			}
-			console.log(this.Companys)
+		},
+		decrease() {
+			if (this.currentPage > 1) {
+				this.Company = []
+				this.currentPage -= 1
+				this.loadEntries()
+			}
+		},
+		/* Este método nos trae todas las compañías mediante una petición GET que se 
+		encuentran almacenadas en la DB
+		*/
+		async loadEntries() {
+			const { data } = await AddCompanyApi.get(`/Empresas/Empresa${this.currentPage}.json`)
+			this.Company = data
+			console.log(this.Company)
+		},
+
+		// Con estos métodos se cambiará el estado de la compañía/empresa.
+		async approveState() {
+			this.Company.estado = 'Aprobado'
+			await AddCompanyApi.put(`/Empresas/Empresa${this.currentPage}.json`, this.Company)
+		},
+		declineState() {
+			this.Company.estado = 'Rechazado'
+			await AddCompanyApi.put(`/Empresas/Empresa${this.currentPage}.json`, this.Company)
 		},
 	},
 }
