@@ -7,8 +7,8 @@
 
 <script>
 /* eslint-disable */
-import Navbar from "@/components/Navbar.vue"
-import Home from './views/Home.vue'
+import Navbar from "@/components/navbar/Navbar.vue"
+import Home from '@/views/Home.vue'
 
 
 export default {

@@ -1,15 +1,17 @@
 <template>
   <nav class="w-full h-min bg-zinc-800 text-white flex gap-12 justify-between px-4">
-    <div class="w-max p-2 flex gap-2 items-center">
-      <img src="../assets/images/logo/Logo1.png" class="w-10 h-10" />
-      <span class="text-lg font-bold whitespace-nowrap">Gente prevalente</span>
-    </div>
+    <a href="/">
+      <div class="w-max p-2 flex gap-2 items-center">
+        <img src="/logo/Logo1.png" class="w-10 h-10" />
+        <span class="text-lg font-bold whitespace-nowrap">Gente prevalente</span>
+      </div>
+    </a>
     <div v-if="width > 768" class="flex w-full justify-between items-center">
       <content-nav-bar />
     </div>
     <div v-else class="relative flex flex-col item-center">
       <button @click="isShowingContent = !isShowingContent" class="p-4 bg-transparent">
-        <img src="../assets/images/icons/Options.png" />
+        <img src="/icons/Options.png" />
       </button>
       <transition name="fade">
         <div v-if="isShowingContent"

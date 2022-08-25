@@ -1,18 +1,32 @@
 <template>
 	<div>
+		<div class="flex text-left bg-gray-200 pt-10 md:pl-10 pb-10">
+			<ol class="flex text-gray-700">
+				<li class="px-2"><a href="#" class="text-sky-400 hover:underline">Administración</a></li>
+				<li class="text-gray-500 select-none font-semibold">/</li>
+				<li class="px-2 font-semibold">Aprobación de Empresas</li>
+			</ol>
+		</div>
 		<div class="w-full h-full flex flex-col min-h-screen items-center justify-start bg-gray-200">
-			<div class="mt-auto bg-center mx-auto w-full max-w-screen-md bg-white shadow-lg rounded-lg p-20">
+			<div class="lg:hidden mb-5 flex justify-center items-center mt-6">
+				<div class="inline-flex items-center text-gray-700 text-xs text-center">
+					<img @click="decrease()" src="/icons/Back.png">
+					<p class="pr-1 pl-1 text-gray-500">Empresa {{ currentPage }} de {{ max }} pendiente por aprobación</p>
+					<img @click="increase()" src="/icons/Next.png">
+				</div>
+			</div>
+			<div class="bg-center mx-auto w-full max-w-screen-md bg-white shadow-lg rounded-lg p-20">
 				<div class="flex justify-center items-start">
 					<div class="flex justify-center">
 						<img class="text-center"
 							src="https://media-exp1.licdn.com/dms/image/C4E0BAQFr1Mn-qykpGw/company-logo_200_200/0/1569503596387?e=2159024400&v=beta&t=9kG-dpqUDzbo1mFBr3uNZ3QLwJgi3zXRSqXwy_LTYK8" />
 					</div>
-					<div class="flex justify-end">
-						<div class="flex-col">
+					<div class="hidden md:block flex justify-end">
+						<div class="flex-col space-y-3">
 							<div class="text-center relative z-0 border-1">
 								<button @click="approveState()" type="button"
-									class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-auto py-auto text-center inline-flex items-center mb-2">
-									<img class="" src="../assets/images/icons/Approve.png">
+									class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-2 py-1 text-center inline-flex items-center mb-2">
+									<img class="" src="icons/Approve.png">
 									<div class='ml-3 text-sm font-bold pt-0.5'>
 										Aprobar Empresa
 									</div>
@@ -20,8 +34,8 @@
 							</div>
 							<div class="text-center relative z-0 border-1">
 								<button @click="declineState()" type="button"
-									class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-auto py-auto text-center inline-flex items-center mb-2">
-									<img class="" src="../assets/images/icons/Decline.png">
+									class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-2 py-1 text-center inline-flex items-center mb-2">
+									<img class="" src="/icons/Decline.png">
 									<div class='ml-3 text-sm font-bold pt-0.5'>
 										Rechazar Empresa
 									</div>
@@ -82,10 +96,10 @@
 								# de empleados
 							</label>
 						</div>
-						<div class="text-center z-0 border-1">
+						<div class="hidden md:block text-center z-0 border-1">
 							<button type="button" @click="modal = true"
 								class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-3 py-1.5 text-center inline-flex w-full items-center mr-2 mb-2">
-								<img class="" src="../assets/images/icons/Clip.png">
+								<img class="" src="/icons/Clip.png">
 								<div class='ml-3 text-sm font-bold pt-0.5'>
 									Ver archivos adjuntos
 								</div>
@@ -93,29 +107,55 @@
 						</div>
 					</div>
 				</form>
+				<docs />
 			</div>
-			<div class="mb-auto flex justify-center items-center mt-6">
+			<div class="md:hidden mt-5 flex justify-end">
+				<div class="flex-col space-y-3">
+					<div class="text-center relative z-0 border-1">
+						<button @click="approveState()" type="button"
+							class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-2 py-1 text-center inline-flex items-center mb-2">
+							<img class="" src="icons/Approve.png">
+							<div class='ml-3 text-sm font-bold pt-0.5'>
+								Aprobar Empresa
+							</div>
+						</button>
+					</div>
+					<div class="text-center relative z-0 border-1">
+						<button @click="declineState()" type="button"
+							class="bg-white hover:bg-gray-100 font-medium shadow-lg rounded-lg text-sm px-2 py-1 text-center inline-flex items-center mb-2">
+							<img class="" src="/icons/Decline.png">
+							<div class='ml-3 text-sm font-bold pt-0.5'>
+								Rechazar Empresa
+							</div>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="hidden md:block mb-auto flex justify-center items-center mt-6">
 				<div class="inline-flex items-center text-gray-700 text-xs text-center">
-					<img @click="decrease()" src="../assets/images/icons/Back.png">
-					<p class="pr-1 pl-1 text-gray-500">Empresa {{currentPage}} de 5 pendiente por aprobación</p>
-					<img @click="increase()" src="../assets/images/icons/Next.png">
+					<img @click="decrease()" src="/icons/Back.png">
+					<p class="pr-1 pl-1 text-gray-500">Empresa {{ currentPage }} de {{ max }} pendiente por aprobación</p>
+					<img @click="increase()" src="/icons/Next.png">
 				</div>
 			</div>
 		</div>
-		<modal :modal = "modal" />
+		<docsModal :modal="modal" />
 	</div>
 </template>
 
 <script>
 import AddCompanyApi from '@/Api/AddCompanys'
 import docsModal from '@/components/modals/docsModal.vue'
+import docs from '@/components/documents/docs.vue'
 
 export default {
 	components: {
-    docsModal,
-  },
+		docsModal,
+		docs,
+	},
 	data() {
 		return {
+			max: 0,
 			modal: false,
 			currentPage: 1,
 			Company: [],
@@ -143,6 +183,10 @@ export default {
 		encuentran almacenadas en la DB
 		*/
 		async loadEntries() {
+			const resp = await AddCompanyApi.get(`/Empresas.json`)
+			console.log('resp', resp.data)
+			this.max = resp.data.length
+			console.log(this.max)
 			const { data } = await AddCompanyApi.get(`/Empresas/Empresa${this.currentPage}.json`)
 			this.Company = data
 			console.log(this.Company)
@@ -150,11 +194,11 @@ export default {
 
 		// Con estos métodos se cambiará el estado de la compañía/empresa.
 		async approveState() {
-			this.Company.estado = 'Aprobado'
+			this.Company.Estado = 'Aprobado'
 			await AddCompanyApi.put(`/Empresas/Empresa${this.currentPage}.json`, this.Company)
 		},
 		async declineState() {
-			this.Company.estado = 'Rechazada'
+			this.Company.Estado = 'Rechazada'
 			await AddCompanyApi.put(`/Empresas/Empresa${this.currentPage}.json`, this.Company)
 		},
 	},

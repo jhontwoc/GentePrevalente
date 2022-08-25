@@ -13,30 +13,72 @@
 						<div v-show="modal"
 							class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
 							<div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-								<div class="sm:flex sm:items-start">
-									<div
-										class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-										<svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-											stroke-width="2" stroke="currentColor" aria-hidden="true">
-											<path stroke-linecap="round" stroke-linejoin="round"
-												d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-										</svg>
-									</div>
-									<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-										<h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Deactivate
-											account</h3>
-										<div class="mt-2">
-											<p class="text-sm text-gray-500">Are you sure you want to deactivate your account?
-												All of your data will be permanently removed. This action cannot be undone.</p>
+								<div class="items-start">
+									<div class="space-y-5 mt-3 items-center justify-center sm:mt-0 sm:ml-4 sm:text-left">
+										<button type="button" @click="modal = false"
+											class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+											data-modal-toggle="authentication-modal">
+											<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+												xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd"
+													d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+													clip-rule="evenodd"></path>
+											</svg>
+											<span class="sr-only">Close modal</span>
+										</button>
+										<h1 class="text-2xl font-semibold leading-6 font-medium text-center">
+											Documentos cargados
+										</h1>
+										<div
+											class="justify-between flex flex-row items-center grid grid-rows-5 grid-flow-col w-full sm:w-1/2">
+											<div class=" flex flex-row items-center">
+												<p>
+													RUT PrevlalentWare
+												</p>
+												<div class="ml-auto flex-col flex ">
+													<img class="ml-auto" src="/icons/Pdf.png" />
+													<span class="text-xs">Rut pre...</span>
+												</div>
+											</div>
+											<div class="flex">
+												<p>
+													Logo PrevlalelntWare
+												</p>
+												<div class="m-auto">
+													<img class="ml-auto" src="/icons/Pdf.png" />
+													<span class="text-xs">Logo Pre...</span>
+												</div>
+											</div>
+											<div class="flex">
+												<p>
+													Acta de constitución PrevlalentWare
+												</p>
+												<div class="m-auto">
+													<img class="ml-auto" src="/icons/Pdf.png" />
+													<span class="text-xs">Acta de c...</span>
+												</div>
+											</div>
+											<div class="flex">
+												<p>
+													Cámara de Comercio Prevalentware
+												</p>
+												<div class="m-auto">
+													<img class="ml-auto" src="/icons/Pdf.png" />
+													<span class="text-xs">Cámara d...</span>
+												</div>
+											</div>
+											<div class="flex">
+												<p>
+													Otro Documento Prevalentware
+												</p>
+												<div class="m-auto">
+													<img class="ml-auto" src="/icons/Pdf.png" />
+													<span class="text-xs">RUT Pre...</span>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-								<button type="button" @click="modal = false"
-									class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-									Cancel
-								</button>
 							</div>
 						</div>
 					</transition>
@@ -45,13 +87,12 @@
 		</div>
 	</transition>
 
-
 </template>
 
 <script>
 export default {
 	props: {
-		modal: Boolean,
-	},
+		modal: Boolean
+	}
 }
 </script>

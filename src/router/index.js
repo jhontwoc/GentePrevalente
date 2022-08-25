@@ -2,9 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes = [
 	{
-		path: '',
+		path: '/',
 		name: 'home',
-		component: () => import('@/views/Home.vue')
+		component: () => import('@/views/Home.vue'),
 	},
 	{
 		path: '/Aprobacion',
@@ -20,11 +20,6 @@ const routes = [
 				},
 			]
 		},
-	},
-	{
-		path: '/Modal',
-		name: 'Modal',
-		component: () => import('@/components/modals/docsModal.vue'),
 	},
 ]
 const router = createRouter({

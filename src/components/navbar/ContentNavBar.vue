@@ -1,7 +1,7 @@
 <template>
   <div class="p-2">
     <div class="flex gap-1 items-center">
-      <img src="../assets/images/icons/Search.png" class="w-4 h-4" />
+      <img src="/icons/Search.png" class="w-4 h-4" />
       <input
         type="text"
         placeholder="Buscar..."
@@ -21,11 +21,11 @@
     </div>
   </div>
   <div class="p-2 flex items-center gap-1">
-    <img src="../assets/images/icons/Settings.png" class="w-4 h-4" />
+    <img src="/icons/Settings.png" class="w-4 h-4" />
     <span>Administración</span>
   </div>
   <div class="p-2 flex items-center gap-1">
-    <img src="../assets/images/icons/Job.png" class="w-4 h-4" />
+    <img src="/icons/Job.png" class="w-4 h-4" />
 
     <select
       name="empleo"
@@ -50,14 +50,14 @@
     </select>
   </div>
   <div class="p-2 flex items-center gap-1">
-    <img src="../assets/images/icons/Cv.png" class="w-4 h-4" />
+    <img src="/icons/Cv.png" class="w-4 h-4" />
     <span>Mi CV</span>
   </div>
   
   <div class="p-2 flex items-center gap-1 relative">
-    <img src="../assets/images/icons/Ellipse.png" class="w-4 h-4" />
+    <img src="/icons/Ellipse.png" class="w-4 h-4" />
     <span>Daniel</span>
-    <img src="../assets/images/icons/VectorDown.png" />
+    <img src="/icons/VectorDown.png" />
   </div>
 </template>
 
