@@ -147,6 +147,7 @@
 import AddCompanyApi from '@/Api/AddCompanys'
 import docsModal from '@/components/modals/docsModal.vue'
 import docs from '@/components/documents/docs.vue'
+import Swal from 'sweetalert2'
 
 export default {
 	components: {
@@ -196,10 +197,18 @@ export default {
 		async approveState() {
 			this.Company.Estado = 'Aprobado'
 			await AddCompanyApi.put(`/Empresas/Empresa${this.currentPage}.json`, this.Company)
+			Swal.fire({
+				icon: 'success',
+				title: 'Empresa aprobada',
+			})
 		},
 		async declineState() {
 			this.Company.Estado = 'Rechazada'
 			await AddCompanyApi.put(`/Empresas/Empresa${this.currentPage}.json`, this.Company)
+			Swal.fire({
+				icon: 'error',
+				title: 'Empresa rechazada',
+			})
 		},
 	},
 }
